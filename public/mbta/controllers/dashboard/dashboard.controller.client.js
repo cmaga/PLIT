@@ -11,6 +11,9 @@
         model.transmitted = [];
         model.hold = [];
         model.normalReqs = [];
+        //
+        model.outToBid = [];
+        //
         model.printOnlyFlags = true;
         model.sortVar = "reqInfo.flag";
         model.printHuh = function(req){
@@ -33,6 +36,11 @@
                             model.transmitted.push(dash[req]);
                             getAdditionalInfo(dash[req].Req_ID, 'transmitted', model.transmitted.length);
                             //console.log("M" + model.transmitted)
+                            ////
+                        } else if (dash[req].Out_To_Bid === 'Y') {
+                                model.outToBid.push(dash[req]);
+                                getAdditionalInfo(dash[req].Req_ID, 'outtobid', model.outToBid.length);
+                                ///
                         } else {
                             model.normalReqs.push(dash[req]);
                             getAdditionalInfo(dash[req].Req_ID, 'normal', model.normalReqs.length);
