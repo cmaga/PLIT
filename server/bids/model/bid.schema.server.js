@@ -6,6 +6,12 @@ var bidSchema = mongoose.Schema({
             "fullname": String,
             "email": String
         },
+        "Vendor": [{
+            "vName" : String,
+            "receivedBy": String,
+            "rDate": String,
+            "rTime": String
+        }],
         "Proj_Name": String,
         "Req_ID": String,
         "Fund_Code": String,
