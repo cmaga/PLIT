@@ -13,6 +13,7 @@ bidModel.removeVendor = removeVendor;
 bidModel.addVendor = addVendor;
 module.exports = bidModel;
 
+//TODO
 function removeVendor(bidId) {
     //find specific bid first
     //remove the vendor from that bid but vendor is an array of objects.
@@ -23,19 +24,16 @@ function removeVendor(bidId) {
         //do something smart
     });
 }
-function addVendor(bidId) {
+function addVendor(Vendor, bidId) { //pass a bid in here that already has the updated object in the array but its temporary. This function reads it and as an access layer to the db it puts it in.
     //find specfic bid first
     //add a vendor to the bid
-    bidModel.update(
+    console.log('We made it to the server data access layer');
+   return (
+       bidModel.update(
         {"_id": bidId}, //where
-        { $push: { scores: 89 } } //what do
-    );
-
-    bidModel.update(
-        { _id: person._id },
-        { $push: { friends: friend } },
-        done
-    );
+        { $push: { "Vendors": {"vName": Vendor.vName, "receivedBy": Vendor.receivedBy , "rDate": Vendor.rDate, "rTime": Vendor.rTime} } } //In the temporary version of the vendor array there should only be 1 therefore we have a constant index of 0
+    )
+   );
 }
 
 function createBid(bid) {

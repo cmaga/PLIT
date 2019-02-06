@@ -19,4 +19,10 @@
     <p><b>Bid Opening Date: </b> {{model.formatDate(model.bid.Timeframe)}}</p>
    <!-- <button class="btn btn-primary btn-lg float-right" ng-click="model.generateDocument()">Download Document</button>
 -->
+    <!-- vendor information -->
+    <h1>{{model.bid.bidNumber}}
+        <a ng-if="model.user._id" href="#!/edit-bid-vendor/{{model.bid._id}}"> <!-- route to the edit-bid with the bid Id -->
+            <div class="btn btn-success btn-lg float-right"><span class="float-right">Edit Vendor(s)</span></div>
+        </a>
+    </h1>
 </div>

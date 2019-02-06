@@ -1,0 +1,41 @@
+
+
+<div class = "container">
+    <h1>Receive/View/Submit Bid</h1>
+
+
+    <input ng-model = "model.vName" class="form-control" placeholder="company name here">
+    <input ng-model = "model.receivedBy" class = "form-control" placeholder="Name of the person who received thebids">
+    <input ng-model = "model.rDate" class = "form-control" placeholder="(MM/DD/YYYY) Bid receipt date">
+    <input ng-model = "model.rTime" class = "form-control" placeholder="Bid receipt time (ex: 1:20 PM)">
+
+    <h3>Please make sure the information you entered is in the correct format for all fields</h3>
+
+    <button ng-click="model.addVendor()"
+            class = "btn btn-block btn-primary">
+        Add
+    </button>
+
+    <button ng-click = "updateMeta(meta)"
+            class = "btn btn-block btn-success">
+        Remove
+    </button>
+
+    <ul class = "list-group">
+        <li ng-repeat = "meta in metas"
+            class="list-group-item">
+            <span ng-click = "removeMeta(meta)"
+                  class = "pull-right glyphicon glyphicon-remove"></span>
+            <span ng-click = "selectMeta($index)"
+                  class = "pull-right glyphicon glyphicon-pencil"></span>
+
+            <h3>{{model.meta.companyName}}</h3>
+            <h3>{{model.meta.receivedBy}}</h3>
+            <h3>{{model.meta.receiptDate}}</h3>
+            <h3>{{model.meta.receiptTime}}</h3>
+
+            <label>{{meta.date | date}}</label>
+        </li>
+    </ul>
+
+</div>

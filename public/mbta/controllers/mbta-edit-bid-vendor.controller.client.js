@@ -1,37 +1,35 @@
 (function () {
     angular
         .module('Chrubix')
-        .controller('MBTAbidEditController', MBTAbidEditController);
+        .controller('MBTAbidMetaController', MBTAbidMetaController);
 
-    function MBTAbidEditController($location, bidService, $routeParams) {
+    function MBTAbidMetaController($location, bidService, $routeParams) {
 
         var model = this;
-        model.submitBid = function () {
-            var bid = {
-                bidType: model.bidType,
-                bidNumber: model.bidNumber,
-                bidDesc: model.bidDesc,
-                bidDeadline: model.bidDeadline,
-                preBidDate: model.preBidDate,
-                preBidLocation: model.preBidLocation,
-                dbeOwner: model.dbeOwner,
-                dbePercent: model.dbePercent,
-                materialType: model.materialType
+        model.addVendor = function () {
+            var Vendor = {
+                vName: model.vName,
+                receivedBy: model.receivedBy,
+                rDate: model.rDate,
+                rTime: model.rTime,
             };
-            bidService.updateBid(bid, $routeParams.bidNumber)
-                .then(function (bid) {
+
+            bidService.updateBidMeta(Vendor, $routeParams.bidNumber)
+                .then(function (Vendor) {
                     $location.url('/view-bid/' + $routeParams.bidNumber);
                 });
 
         };
 
-        model.removeBid = function () {
+       /* model.removeBid = function () {
             bidService.removeBid($routeParams.bidNumber)
                 .then(function (bid) {
                     $location.url('/list-bids');
                 });
         };
+        */
 
+       //TODO we get the specific bid information from the database. So this would populate if we wanted to update but we just want to create new array which is fine do the the mongocommand which kind of appends. But its needed for showing/listing.
         function init() {
             bidService.getSpecificBid($routeParams.bidNumber)
                 .then(function (res) {

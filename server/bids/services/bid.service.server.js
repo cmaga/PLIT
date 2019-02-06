@@ -6,7 +6,10 @@ app.get('/api/bids', getBids);
 app.get('/api/bid/:bidId', getSpecificBid);
 app.put('/api/update-bid/:bidId', updateBid);
 app.delete('/api/remove-bid/:bidId', removeBid);
-app.put('/api/save-fields/:bidId', saveFields)
+app.put('/api/save-fields/:bidId', saveFields);
+app.put('/api/update-bid-meta/:bidId', updateBidMeta);
+
+
 function createBid(req, res) {
     var bid = req.body;
     var b_id = bid.Bid_Type;
@@ -56,7 +59,7 @@ function saveFields(req,res){
 function updateBid(req, res) {
     var bid = req.body;
     bidModel
-        .updateBid(bid, req.params.bidId)
+        .updateBid(bid, req.params.bidId) //TODO what update bid is this referancing ?
         .then(function (bid) {
             console.log(bid)
             res.send(bid);
@@ -92,6 +95,20 @@ function removeBid(req, res) {
         .then(function (bid) {
             res.send(bid);
         }, function (err) {
+            res.send(err);
+        });
+}
+
+function updateBidMeta(req, res) { //TODO move this function all the way to the end once its functional
+    console.log('we made it to the server side service');
+    var Vendor = req.body;
+    bidModel //reference to bid model file so below we are probably using update bid meta from whatever the model declares it as
+        .addVendor(Vendor, req.params.bidId) //as defined in bid.model
+        .then(function (Vendor) {
+            console.log(Vendor);
+            res.send(Vendor);
+        }, function (err) {
+            console.log("error");
             res.send(err);
         });
 }

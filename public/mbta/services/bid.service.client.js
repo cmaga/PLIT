@@ -11,9 +11,20 @@
             uploadFile: uploadFile,
             updateBid: updateBid,
             removeBid: removeBid,
-            saveFields: saveFields
+            saveFields: saveFields,
+            updateBidMeta: updateBidMeta
+
         };
         return api;
+
+        function updateBidMeta(vendorInfo, bidId) {
+            console.log(vendorInfo);
+            var url = "/api/update-bid-meta/" + bidId; //TODO where is url coming from wherever you see update-bid as an url it must be changed to include -meta
+            return $http.put(url, vendorInfo) // TODO this data will come from the controller. Make sure if bidInfromation appears in the other service file to change the name they might correspond
+                .then(function (response) {
+                    return response.data;
+                });
+        }
 
         function addBid(bidInformation) {
             console.log(bidInformation);

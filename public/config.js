@@ -108,6 +108,14 @@
                     currentUser: checkCurrentUser
                 }
             })
+            .when('/edit-bid-vendor/:bidNumber', {
+                templateUrl: './mbta/templates/bidMeta.html', //TODO move reuse prev template url
+                controller: 'MBTAbidMetaController', //TODO create controller
+                controllerAs: 'model',
+                resolve: {
+                    currentUser: checkCurrentUser
+                }
+            })
             .when('/trello_plotly', {
                 templateUrl: './management/plotly.html'
             })
