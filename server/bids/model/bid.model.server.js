@@ -24,14 +24,14 @@ function removeVendor(bidId) {
         //do something smart
     });
 }
-function addVendor(Vendor, bidId) { //pass a bid in here that already has the updated object in the array but its temporary. This function reads it and as an access layer to the db it puts it in.
+function addVendor(Vendors, bidId) { //pass a bid in here that already has the updated object in the array but its temporary. This function reads it and as an access layer to the db it puts it in.
     //find specfic bid first
-    //add a vendor to the bid
+    //add a vendor to the bi
     console.log('We made it to the server data access layer');
    return (
-       bidModel.update(
-        {"_id": bidId}, //where
-        { $push: { "Vendors": {"vName": Vendor.vName, "receivedBy": Vendor.receivedBy , "rDate": Vendor.rDate, "rTime": Vendor.rTime} } } //In the temporary version of the vendor array there should only be 1 therefore we have a constant index of 0
+       bidModel.findOneAndUpdate(
+        {"_id": bidId}, // at current bid
+        { $push: { "Vendor": {"vName": Vendors.vName, "receivedBy": Vendors.receivedBy , "rDate": Vendors.rDate, "rTime": Vendors.rTime} } } //In the temporary version of the vendor array there should only be 1 therefore we have a constant index of 0
     )
    );
 }
