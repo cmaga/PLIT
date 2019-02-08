@@ -18,7 +18,7 @@
         model.generateDocument = function(){
             documentService
                 .getDocument(model.bid)
-        }
+        };
         model.formatDate = function (mongoDate) {
             var date = new Date(mongoDate);
             var month = date.getMonth() + 1;
@@ -36,6 +36,24 @@
             }
             return month + "/" + day + "/" + year + " " + hours + ":" + minutes + " " + timeOfDay;
         };
+        //TODO
+        model.removeV = removeV;
+        function removeV(V) {
+            var index = Vendors.indexOf(V);
+
+        }
+
+
+        function init() {
+            bidService.getSpecificBid($routeParams.bidNumber)
+                .then(function (res) {
+                    model.bid = res[0];
+                    model.Vs = model.bid.Vendor;
+
+                })
+        }
+
+        init();
 
     }
 })();

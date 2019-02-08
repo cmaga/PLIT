@@ -26,6 +26,7 @@
                 });
         }
 
+
         function addBid(bidInformation) {
             console.log(bidInformation);
             var url = "/api/add-bid";

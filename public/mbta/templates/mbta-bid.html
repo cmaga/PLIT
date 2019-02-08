@@ -25,4 +25,20 @@
             <div class="btn btn-success btn-lg float-right"><span class="float-right">Edit Vendor(s)</span></div>
         </a>
     </h1>
+
+    <h1>{{model.bid.Vendor[0].vName}}</h1>
+
+    <div>
+        <ul class = "list-group">
+            <li ng-repeat = "V in model.Vs" class = "list-group-item">
+                <span ng-click="removeV(V)" class="pull-right glyphicon glyphicon-remove"></span>
+
+                <h3>{{V.vName}}</h3>
+                <h3>{{V.receivedBy}}</h3>
+                <h3>{{V.rDate}}</h3>
+                <h3>{{V.rTime}}</h3>
+            </li>
+        </ul>
+
+    </div>
 </div>
