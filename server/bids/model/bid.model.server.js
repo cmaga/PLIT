@@ -11,18 +11,20 @@ bidModel.removeBid = removeBid;
 bidModel.getSpecificBid = getSpecificBid;
 bidModel.removeVendor = removeVendor;
 bidModel.addVendor = addVendor;
+bidModel.removeVendor = removeVendor;
 module.exports = bidModel;
 
 //TODO
-function removeVendor(bidId) {
-    //find specific bid first
-    //remove the vendor from that bid but vendor is an array of objects.
-    // TODO not sure about array object selection.
-    //var vendorToRemove = "";
-    bidModel.update({ _id: diveId }, { "$pull": { "Vendor": { "vName": vendorIdToRemove } }}, { safe: true, multi:true }, //xxx should be user inputed name of the vendor we want to take out.
-        function(err, obj) {
-        //do something smart
-    });
+function removeVendor(VendorToRemove, bidId) {
+    //mongo has no way of cleanly dealing with array indexs at least according to a forum from 2016 so go back and pass the entire vendor information.
+    return(
+    bidModel.findOneAndUpdate(
+        { _id: bidId },
+        { "$pull": { "Vendor": {"vName": VendorToRemove.vName} } },
+        false,
+        true
+        )
+    );
 }
 function addVendor(Vendors, bidId) { //pass a bid in here that already has the updated object in the array but its temporary. This function reads it and as an access layer to the db it puts it in.
     //find specfic bid first

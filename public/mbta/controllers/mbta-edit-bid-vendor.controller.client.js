@@ -7,6 +7,8 @@
 
         var model = this;
         model.addVendor = function () {
+            // set vendor to be these variables
+            //these get set by the controller due to use input
             var Vendor = {
                 vName: model.vName,
                 receivedBy: model.receivedBy,

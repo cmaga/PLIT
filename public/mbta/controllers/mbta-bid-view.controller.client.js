@@ -3,7 +3,7 @@
         .module('Chrubix')
         .controller('MBTAbidViewController', MBTAbidViewController);
 
-    function MBTAbidViewController(bidService, $routeParams, currentUser, documentService) {
+    function MBTAbidViewController(bidService, $routeParams, currentUser, documentService, $location) {
         var model = this;
         model.user = currentUser;
         model.getSpecificBid = function () {
@@ -37,18 +37,41 @@
             return month + "/" + day + "/" + year + " " + hours + ":" + minutes + " " + timeOfDay;
         };
         //TODO
-        model.removeV = removeV;
-        function removeV(V) {
-            var index = Vendors.indexOf(V);
+        //store vendor name only so that at the database we can search for this vendor in the array and remove him
 
-        }
+        model.removeV = function(V) {
+            //var index = Vendors.indexOf(V); //this index is created by angular and we are using it here to determine which vendor in the array to remove.
+            var specificVendor = V;
+
+            bidService.removeBidMeta(V, $routeParams.bidNumber)
+                .then(function (V) {
+                    $location.url('/view-bid/' + $routeParams.bidNumber);
+                });
+        };
+        /////
+        /*var Vendor = {
+            vName: model.vName,
+            receivedBy: model.receivedBy,
+            rDate: model.rDate,
+            rTime: model.rTime,
+        };
+
+        bidService.updateBidMeta(Vendor, $routeParams.bidNumber)
+            .then(function (Vendor) {
+                $location.url('/view-bid/' + $routeParams.bidNumber);
+            });
+
+    };
+
+*/
+        ////
 
 
         function init() {
             bidService.getSpecificBid($routeParams.bidNumber)
                 .then(function (res) {
                     model.bid = res[0];
-                    model.Vs = model.bid.Vendor;
+                    model.Vs = model.bid.Vendor; //Vs is the array of vendor objects and we can use it as an arry af variable within this file
 
                 })
         }

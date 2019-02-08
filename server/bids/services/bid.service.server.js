@@ -8,6 +8,7 @@ app.put('/api/update-bid/:bidId', updateBid);
 app.delete('/api/remove-bid/:bidId', removeBid);
 app.put('/api/save-fields/:bidId', saveFields);
 app.put('/api/update-bid-meta/:bidId', updateBidMeta);
+app.put('/api/remove-bid-meta/:bidId', removeBidMeta); //this is removing through an update mongo call which is why its a put instead of a delete.
 
 
 function createBid(req, res) {
@@ -107,6 +108,19 @@ function updateBidMeta(req, res) { //TODO move this function all the way to the 
         .then(function (Vendor) {
             console.log(Vendor);
             res.send(Vendor);
+        }, function (err) {
+            console.log("error");
+            res.send(err);
+        });
+}
+function removeBidMeta(req, res) {
+    console.log("server side service");
+    var VendorToRemove = req.body; //vendor to remove is a specific vendor
+    bidModel
+        .removeVendor(VendorToRemove, req.params.bidId)
+        .then(function (VendorToRemove) {
+            console.log(VendorToRemove);
+            res.send(VendorToRemove);
         }, function (err) {
             console.log("error");
             res.send(err);

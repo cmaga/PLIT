@@ -12,7 +12,8 @@
             updateBid: updateBid,
             removeBid: removeBid,
             saveFields: saveFields,
-            updateBidMeta: updateBidMeta
+            updateBidMeta: updateBidMeta,
+            removeBidMeta: removeBidMeta
 
         };
         return api;
@@ -26,6 +27,15 @@
                 });
         }
 
+        //TODO this vendor info gets passed in by the controller/angular idea
+        function removeBidMeta(V, bidId) {
+            console.log(V);
+            var url = "/api/remove-bid-meta" + bidId;
+            return $http.put(url, V)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
 
         function addBid(bidInformation) {
             console.log(bidInformation);
