@@ -31,7 +31,7 @@
     <div>
         <ul class = "list-group">
             <li ng-repeat = "V in model.Vs" class = "list-group-item">
-                <span ng-click="model.removeV(V)" class="pull-right glyphicon glyphicon-remove"></span>
+                <span ng-if = "model.user._id" ng-click="model.removeV(V)" class="pull-right glyphicon glyphicon-remove"></span>
 
                 <h3>{{V.vName}}</h3>
                 <h3>{{V.receivedBy}}</h3>

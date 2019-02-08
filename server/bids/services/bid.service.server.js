@@ -116,6 +116,7 @@ function updateBidMeta(req, res) { //TODO move this function all the way to the 
 function removeBidMeta(req, res) {
     console.log("server side service");
     var VendorToRemove = req.body; //vendor to remove is a specific vendor
+    console.log(VendorToRemove);
     bidModel
         .removeVendor(VendorToRemove, req.params.bidId)
         .then(function (VendorToRemove) {

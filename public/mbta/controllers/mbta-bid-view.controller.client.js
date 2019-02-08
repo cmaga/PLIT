@@ -3,7 +3,7 @@
         .module('Chrubix')
         .controller('MBTAbidViewController', MBTAbidViewController);
 
-    function MBTAbidViewController(bidService, $routeParams, currentUser, documentService, $location) {
+    function MBTAbidViewController(bidService, $routeParams, currentUser, documentService, $location, $route) {
         var model = this;
         model.user = currentUser;
         model.getSpecificBid = function () {
@@ -43,9 +43,10 @@
             //var index = Vendors.indexOf(V); //this index is created by angular and we are using it here to determine which vendor in the array to remove.
             var specificVendor = V;
 
-            bidService.removeBidMeta(V, $routeParams.bidNumber)
-                .then(function (V) {
+            bidService.removeBidMeta(specificVendor, $routeParams.bidNumber)
+                .then(function (specificVendor) {
                     $location.url('/view-bid/' + $routeParams.bidNumber);
+                    $route.reload();
                 });
         };
         /////

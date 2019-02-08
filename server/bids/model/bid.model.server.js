@@ -11,21 +11,22 @@ bidModel.removeBid = removeBid;
 bidModel.getSpecificBid = getSpecificBid;
 bidModel.removeVendor = removeVendor;
 bidModel.addVendor = addVendor;
-bidModel.removeVendor = removeVendor;
 module.exports = bidModel;
 
 //TODO
 function removeVendor(VendorToRemove, bidId) {
     //mongo has no way of cleanly dealing with array indexs at least according to a forum from 2016 so go back and pass the entire vendor information.
+    console.log("hi from data access layer");
+    console.log(VendorToRemove);
     return(
     bidModel.findOneAndUpdate(
-        { _id: bidId },
-        { "$pull": { "Vendor": {"vName": VendorToRemove.vName} } },
-        false,
-        true
+        { "_id": bidId },
+        { "$pull": { "Vendor": {"vName": VendorToRemove.vName, } } },
+        {multi: true}
         )
     );
 }
+
 function addVendor(Vendors, bidId) { //pass a bid in here that already has the updated object in the array but its temporary. This function reads it and as an access layer to the db it puts it in.
     //find specfic bid first
     //add a vendor to the bi
