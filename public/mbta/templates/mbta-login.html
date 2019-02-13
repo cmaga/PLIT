@@ -3,33 +3,40 @@
 
 <h3>Login</h3>
 
-<div class="login">
-    <br/>
-    <p>Username</p>
-    <input autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
+    <form name="form" ng-submit="model.login(username, password)" role="form">
+        <div class="login">
+            <br/>
+         <p>Username</p>
+
+        <input autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
            type="text"
            class="form-control"
            ng-model="username"
            required
-    />
+        />
 
-    <p>Password</p>
-    <input type="password"
-           class="form-control"
-           ng-model="password"
-           required/>
-    <br>
-    <div ng-click="model.login(username, password)"
-       class="btn btn-block btn-primary">
-        Login
-    </div>
+        <p>Password</p>
+        <input type="password"
+             class="form-control"
+             ng-model="password"
+               required
+        />
+
+        <br>
+
+            <button type="submit" class="btn btn-block btn-primary">Login</button>
+
+        </div>
+
+    </form>
     <!--
     <a href="#!/register"
        class="btn btn-block btn-success">
         Register
     </a>
     -->
-</div>
+
 <br/>
 <p>Don't have an account? Email noldakowski@mbta.com to request access.</p>
 </div>
+
