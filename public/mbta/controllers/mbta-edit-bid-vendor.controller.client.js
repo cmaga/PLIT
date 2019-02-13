@@ -23,15 +23,6 @@
 
         };
 
-       /* model.removeBid = function () {
-            bidService.removeBid($routeParams.bidNumber)
-                .then(function (bid) {
-                    $location.url('/list-bids');
-                });
-        };
-        */
-
-       //TODO we get the specific bid information from the database. So this would populate if we wanted to update but we just want to create new array which is fine do the the mongocommand which kind of appends. But its needed for showing/listing.
         function init() {
             bidService.getSpecificBid($routeParams.bidNumber)
                 .then(function (res) {
