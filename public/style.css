@@ -96,7 +96,7 @@ label {
 }
 
 .bid-row {
-    max-height: 30px;
+    max-height: 20px;
 }
 
 .list-header {
@@ -148,4 +148,5 @@ input[type=checkbox] {
         min-width: 768px;
     }
 }
+
 

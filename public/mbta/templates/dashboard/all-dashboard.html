@@ -51,9 +51,20 @@
                     <div class="col-3
 " style="overflow: hidden; word-wrap: break-word;">{{req.reqInfo.lines[0].More_Info}}
                     </div>
-                    <div class="col-1"><a href="#!/reqinfo?reqid={{req.Req_ID}}"
-                                          class="btn fas fa-eye mx-1 center-block"></a>
+
+
+                    <div class="input-group col-1">
+                            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#!/reqinfo?reqid={{req.Req_ID}}">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                                <div role="separator" class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Separated link</a>
+                            </div>
+                        </div>
                     </div>
+
                 </div>
             </div>
         </div>
